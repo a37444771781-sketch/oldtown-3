@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Old Town · Батуми — три варианта дизайна</title>
+<meta name="description" content="Демо: три варианта нового сайта отеля Old Town в Батуми.">
+<link rel="preload" href="assets/img/about_1.webp" as="image">
+<style>
+@font-face{font-family:'Corm';src:url('assets/fonts/cormorant-300-cyrillic.woff2') format('woff2');font-weight:300;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Corm';src:url('assets/fonts/cormorant-400-cyrillic.woff2') format('woff2');font-weight:400;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Corm';src:url('assets/fonts/cormorant-300-latin.woff2') format('woff2');font-weight:300;font-display:swap}
+@font-face{font-family:'Corm';src:url('assets/fonts/cormorant-400-latin.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Man';src:url('assets/fonts/manrope-400-cyrillic.woff2') format('woff2');font-weight:400;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Man';src:url('assets/fonts/manrope-500-cyrillic.woff2') format('woff2');font-weight:500;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Man';src:url('assets/fonts/manrope-400-latin.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Man';src:url('assets/fonts/manrope-500-latin.woff2') format('woff2');font-weight:500;font-display:swap}
+
+*{box-sizing:border-box}
+body{margin:0;font-family:'Man',-apple-system,'Segoe UI',Roboto,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;background:#111}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,p{margin:0}
+.serif{font-family:'Corm',Georgia,serif;font-weight:300;letter-spacing:-.01em;line-height:1.02}
+
+/* ---------- switcher ---------- */
+#sw{position:fixed;z-index:999;right:14px;bottom:14px;display:flex;align-items:center;gap:0;background:rgba(20,20,20,.9);color:#fff;border-radius:100px;padding:4px;font-size:12px;letter-spacing:.06em;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+#sw b{font-weight:500;opacity:.55;padding:0 10px 0 12px;text-transform:uppercase;font-size:10.5px}
+#sw button{background:none;border:0;color:#fff;font:inherit;cursor:pointer;padding:8px 14px;border-radius:100px;opacity:.55;min-height:36px}
+#sw button.on{background:#fff;color:#111;opacity:1}
+#sw button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+
+.vv{display:none}
+.vv.on{display:block}
+
+/* ================= A · DARK PREMIUM ================= */
+.vA{background:#0e0d0b;color:#efe7d7}
+.vA .top{position:sticky;top:0;z-index:50;background:rgba(14,13,11,.86);backdrop-filter:blur(8px);border-bottom:1px solid rgba(239,231,215,.12)}
+.vA .in{width:min(1240px,92vw);margin:0 auto;display:flex;align-items:center;gap:28px;height:70px}
+.vA .lg{font-family:'Corm',serif;font-size:19px;letter-spacing:.34em;text-transform:uppercase;font-weight:400}
+.vA .in nav{margin-left:auto;display:flex;gap:26px;font-size:13px;letter-spacing:.04em;color:rgba(239,231,215,.72)}
+.vA .in nav a:hover{color:#d9b871}
+.vA .cta{border:1px solid #d9b871;color:#d9b871;padding:10px 20px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;transition:.2s}
+.vA .cta:hover{background:#d9b871;color:#0e0d0b}
+.vA .hero{position:relative;min-height:clamp(520px,88vh,860px);display:flex;align-items:flex-end;overflow:hidden;background:#0e0d0b}
+.vA .hero .bd{position:absolute;inset:-6%;width:112%;height:112%;object-fit:cover;filter:blur(26px) brightness(.5) saturate(.75);opacity:.85}
+.vA .hero .sh{position:absolute;top:0;right:0;height:100%;width:min(56%,860px);object-fit:cover;filter:saturate(.95) brightness(.86);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 38%);mask-image:linear-gradient(90deg,transparent 0%,#000 38%)}
+.vA .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,13,11,.72) 0%,rgba(14,13,11,.25) 40%,rgba(14,13,11,.94) 100%);pointer-events:none}
+.vA .hero .txt{position:relative;z-index:2;width:min(1240px,92vw);margin:0 auto;padding-bottom:clamp(34px,5vw,60px)}
+.vA .kick{font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:#d9b871;margin-bottom:18px}
+.vA h1{font-size:clamp(40px,6.2vw,86px);max-width:16ch}
+.vA .sub{margin-top:18px;font-size:clamp(15px,1.3vw,17px);color:rgba(239,231,215,.78);max-width:46ch}
+
+.vA .search{margin-top:clamp(26px,4vw,44px);display:grid;grid-template-columns:repeat(4,1fr) auto;gap:1px;background:rgba(239,231,215,.16);border:1px solid rgba(239,231,215,.16);width:min(1000px,100%)}
+.vA .fld{background:#141310;padding:12px 16px;display:flex;flex-direction:column;gap:4px}
+.vA .fld label{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(239,231,215,.5)}
+.vA .fld input,.vA .fld select{background:none;border:0;color:#efe7d7;font:inherit;font-size:15px;padding:0;outline:none;min-height:24px}
+.vA .fld input[type=date]{color-scheme:dark}
+.vA .go{background:#d9b871;border:0;color:#161310;font:inherit;font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:0 26px;cursor:pointer;min-height:64px;font-weight:500}
+.vA .go:hover{background:#efd694}
+.vA .out{display:none;margin-top:1px;background:#141310;border:1px solid rgba(239,231,215,.16);padding:20px 22px;width:min(1000px,100%)}
+.vA .out.on{display:block}
+.vA .row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid rgba(239,231,215,.1)}
+.vA .row:last-child{border:0}
+.vA .row b{font-family:'Corm',serif;font-size:20px;font-weight:400}
+.vA .row small{display:block;font-size:12px;color:rgba(239,231,215,.55);margin-top:2px}
+.vA .pr{font-family:'Corm',serif;font-size:21px;white-space:nowrap}
+.vA .mini{border:1px solid rgba(239,231,215,.35);padding:8px 14px;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.vA .mini:hover{border-color:#d9b871;color:#d9b871}
+
+.vA .band{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid rgba(239,231,215,.12)}
+.vA .band div{padding:22px 20px;border-right:1px solid rgba(239,231,215,.12);font-size:13px;color:rgba(239,231,215,.62)}
+.vA .band div:last-child{border:0}
+.vA .band b{display:block;color:#efe7d7;font-family:'Corm',serif;font-size:17px;font-weight:400;margin-bottom:3px}
+
+.vA section{width:min(1240px,92vw);margin:0 auto;padding:clamp(52px,7vw,96px) 0}
+.vA .hd{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:34px}
+.vA h2{font-size:clamp(30px,3.6vw,46px)}
+.vA .hd span{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:rgba(239,231,215,.45)}
+.vA .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(239,231,215,.14)}
+.vA .card{background:#111009;padding:0;display:flex;flex-direction:column}
+.vA .card img{height:230px;width:100%;object-fit:cover;filter:saturate(.9)}
+.vA .card .b{padding:18px 18px 22px;display:flex;flex-direction:column;gap:6px;flex:1}
+.vA .card h3{font-family:'Corm',serif;font-weight:400;font-size:23px}
+.vA .card .p{font-size:13px;color:rgba(239,231,215,.6)}
+.vA .card .n{font-family:'Corm',serif;font-size:18px;margin-top:auto;padding-top:14px;color:#d9b871}
+.vA .gal{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.vA .gal img{width:100%;height:clamp(150px,17vw,230px);object-fit:cover;filter:saturate(.9) contrast(1.02)}
+.vA .spec{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,5vw,70px);align-items:center}
+.vA .spec img{width:100%;height:clamp(280px,34vw,440px);object-fit:cover}
+.vA .spec p{color:rgba(239,231,215,.72);margin-top:18px}
+.vA .lst{list-style:none;padding:0;margin:26px 0 0}
+.vA .lst li{padding:13px 0;border-top:1px solid rgba(239,231,215,.12);font-size:14px;color:rgba(239,231,215,.72);display:flex;gap:14px}
+.vA .lst span{color:#d9b871;font-family:'Corm',serif;font-size:15px}
+.vA .cnt{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,70px);padding-bottom:80px}
+.vA .cl{display:flex;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px solid rgba(239,231,215,.12);font-size:14px}
+.vA .cl em{font-style:normal;color:rgba(239,231,215,.5);font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+.vA .cl a:hover{color:#d9b871}
+.vA footer{border-top:1px solid rgba(239,231,215,.12);padding:26px 0;font-size:12px;color:rgba(239,231,215,.4)}
+.vA footer .in2{width:min(1240px,92vw);margin:0 auto;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media(max-width:980px){
+ .vA .cards,.vA .gal{grid-template-columns:repeat(2,1fr)}
+ .vA .band,.vA .spec,.vA .cnt{grid-template-columns:1fr}
+ .vA .band div{border-right:0;border-bottom:1px solid rgba(239,231,215,.12)}
+ .vA .in nav,.vA .in .cta{display:none}
+ .vA .search{grid-template-columns:1fr 1fr}
+ .vA .go{grid-column:1/-1;min-height:54px}
+}
+
+/* ================= B · LIGHT BOUTIQUE ================= */
+.vB{background:#f7f2e8;color:#231f19}
+.vB .top{position:sticky;top:0;z-index:50;background:rgba(247,242,232,.94);border-bottom:1px solid rgba(35,31,25,.1)}
+.vB .in{width:min(1200px,92vw);margin:0 auto;display:flex;align-items:center;gap:26px;height:78px}
+.vB .lg{font-family:'Corm',serif;font-size:24px;letter-spacing:.02em}
+.vB .lg i{display:block;font-style:normal;font-family:'Man';font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:#8b8172;margin-top:2px}
+.vB .in nav{margin-left:auto;display:flex;gap:24px;font-size:14px;color:#5d5548}
+.vB .in nav a:hover{color:#231f19}
+.vB .cta{background:#3f4a38;color:#f7f2e8;padding:13px 22px;font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.vB .cta:hover{background:#2d3628}
+.vB .wrap{width:min(1200px,92vw);margin:0 auto}
+.vB .hero{display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(26px,4.4vw,64px);align-items:center;padding:clamp(30px,4.6vw,64px) 0 clamp(26px,3.6vw,48px)}
+.vB .kick{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#8b8172}
+.vB h1{font-size:clamp(36px,5vw,68px);margin-top:16px;max-width:14ch}
+.vB .lead{margin-top:20px;font-size:clamp(15px,1.35vw,17.5px);color:#5d5548;max-width:42ch}
+.vB .ph{position:relative}
+.vB .ph img{width:100%;height:clamp(300px,44vw,520px);object-fit:cover}
+.vB .ph .badge{position:absolute;left:16px;bottom:16px;background:#f7f2e8;padding:10px 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#3f4a38}
+.vB .search{margin-top:28px;background:#fff;border:1px solid rgba(35,31,25,.1);display:grid;grid-template-columns:1fr 1fr .8fr auto;gap:14px;padding:16px;align-items:end}
+.vB .fld{display:flex;flex-direction:column;gap:6px}
+.vB .fld label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8b8172}
+.vB .fld input,.vB .fld select{height:44px;border:1px solid rgba(35,31,25,.14);background:#fbf8f2;padding:0 12px;font:inherit;font-size:15px;color:#231f19;width:100%}
+.vB .go{height:44px;border:0;background:#3f4a38;color:#fff;font:inherit;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:0 22px;cursor:pointer}
+.vB .go:hover{background:#2d3628}
+.vB .out{display:none;margin-top:12px;background:#fff;border:1px solid rgba(35,31,25,.1);padding:8px 18px}
+.vB .out.on{display:block}
+.vB .row{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid rgba(35,31,25,.08);font-size:15px}
+.vB .row:last-child{border:0}
+.vB .pr{font-family:'Corm',serif;font-size:21px}
+.vB .mini{background:#3f4a38;color:#fff;padding:9px 16px;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.vB .tri{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,44px);border-top:1px solid rgba(35,31,25,.12);border-bottom:1px solid rgba(35,31,25,.12);padding:30px 0}
+.vB .tri div{display:flex;gap:14px;align-items:flex-start}
+.vB .tri b{font-family:'Corm',serif;font-size:30px;color:#3f4a38;line-height:1;font-weight:300}
+.vB .tri p{font-size:13.5px;color:#5d5548}
+.vB .tri strong{display:block;font-size:14.5px;color:#231f19;font-weight:500;margin-bottom:2px}
+.vB section{padding:clamp(50px,6.6vw,92px) 0}
+.vB .hd{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:36px;flex-wrap:wrap}
+.vB h2{font-size:clamp(30px,3.6vw,48px);margin-top:10px}
+.vB .hd p{color:#5d5548;max-width:44ch;margin-top:12px;font-size:15px}
+.vB .rooms{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,34px)}
+.vB .room{background:#fff;border:1px solid rgba(35,31,25,.08);display:flex;flex-direction:column}
+.vB .room img{height:clamp(210px,26vw,300px);width:100%;object-fit:cover}
+.vB .room .b{padding:22px 22px 24px;display:flex;flex-direction:column;gap:8px;flex:1}
+.vB .room .no{font-size:11px;letter-spacing:.2em;color:#a79c89}
+.vB .room h3{font-family:'Corm',serif;font-weight:400;font-size:26px}
+.vB .room p{font-size:14px;color:#5d5548}
+.vB .room .ft{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:auto;padding-top:16px;border-top:1px solid rgba(35,31,25,.08)}
+.vB .room .ft span{font-family:'Corm',serif;font-size:20px}
+.vB .room .ft a{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;border-bottom:1px solid #3f4a38;padding-bottom:3px;color:#3f4a38}
+.vB .dark{background:#2b2a24;color:#efe9dc}
+.vB .dark .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,4.6vw,64px);align-items:center}
+.vB .dark img{width:100%;height:clamp(280px,36vw,460px);object-fit:cover}
+.vB .dark h2{color:#efe9dc}
+.vB .dark p{color:rgba(239,233,220,.72);margin-top:16px;max-width:44ch}
+.vB .dark .kick{color:#c2b48f}
+.vB .dark ul{list-style:none;padding:0;margin:24px 0 0}
+.vB .dark li{padding:12px 0;border-top:1px solid rgba(239,233,220,.16);font-size:14px;color:rgba(239,233,220,.78)}
+.vB .cnt{display:grid;grid-template-columns:1fr 1fr;gap:clamp(26px,4vw,60px)}
+.vB .cl{display:flex;justify-content:space-between;gap:16px;padding:16px 0;border-bottom:1px solid rgba(35,31,25,.12);font-size:15.5px}
+.vB .cl em{font-style:normal;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#8b8172}
+.vB .box{background:#efe7d8;padding:clamp(24px,3vw,34px)}
+.vB .box p{font-size:14.5px;color:#5d5548;margin-top:10px}
+.vB .box a.dl{display:inline-block;margin-top:18px;border-bottom:1px solid #231f19;padding-bottom:3px;font-size:13px;letter-spacing:.06em}
+.vB footer{background:#2b2a24;color:rgba(239,233,220,.55);padding:30px 0;font-size:12.5px}
+.vB footer .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.vB .mbar{display:none}
+@media(max-width:960px){
+ .vB .hero,.vB .dark .wrap,.vB .cnt,.vB .rooms{grid-template-columns:1fr}
+ .vB .tri{grid-template-columns:1fr}
+ .vB .in nav,.vB .in .cta{display:none}
+ .vB .search{grid-template-columns:1fr 1fr}
+ .vB .go{grid-column:1/-1}
+ .vB .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:60;background:#fff;border-top:1px solid rgba(35,31,25,.12);padding:8px 10px;gap:8px}
+ .vB .mbar a{flex:1;text-align:center;padding:14px 0;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+ .vB .mbar a:first-child{background:#efe7d8;color:#231f19}
+ .vB .mbar a:last-child{background:#3f4a38;color:#fff}
+ .vB{padding-bottom:60px}
+}
+
+/* ================= C · EDITORIAL MINIMAL ================= */
+.vC{background:#fbfbf9;color:#0f0f0f}
+.vC .top{border-bottom:1px solid #0f0f0f}
+.vC .in{width:min(1320px,94vw);margin:0 auto;display:flex;align-items:center;gap:24px;height:74px}
+.vC .lg{font-family:'Corm',serif;font-size:22px;letter-spacing:.3em;text-transform:uppercase}
+.vC .in .sep{flex:1;height:1px;background:#0f0f0f;opacity:.15}
+.vC .in a.lk{font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+.vC .in a.lk:hover{opacity:.55}
+.vC .hero{width:min(1320px,94vw);margin:0 auto;padding:clamp(44px,7vw,110px) 0 0}
+.vC .kick{font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:#6d6d6d}
+.vC h1{font-size:clamp(46px,8.6vw,132px);line-height:.92;margin:18px 0 0;letter-spacing:-.02em}
+.vC .lead{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,60px);margin-top:clamp(26px,4vw,46px);border-top:1px solid #0f0f0f;padding-top:24px}
+.vC .lead p{font-size:clamp(15px,1.5vw,18px);color:#3a3a3a;max-width:44ch}
+.vC .strip{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:clamp(30px,4vw,50px)}
+.vC .strip img{width:100%;height:clamp(150px,22vw,320px);object-fit:cover;filter:grayscale(.15)}
+.vC .search{border-top:1px solid #0f0f0f;border-bottom:1px solid #0f0f0f;margin-top:2px;display:grid;grid-template-columns:repeat(4,1fr) auto;gap:0}
+.vC .fld{padding:16px 18px;border-right:1px solid rgba(15,15,15,.14);display:flex;flex-direction:column;gap:5px}
+.vC .fld label{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:#7a7a7a}
+.vC .fld input,.vC .fld select{border:0;background:none;font:inherit;font-size:15px;padding:0;color:#0f0f0f;min-height:24px}
+.vC .fld select{appearance:none}
+.vC .go{border:0;background:#0f0f0f;color:#fff;font:inherit;font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;padding:0 28px;cursor:pointer;min-height:70px}
+.vC .go:hover{background:#333}
+.vC .out{display:none;border:1px solid #0f0f0f;border-top:0}
+.vC .out.on{display:block}
+.vC .row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 18px;border-bottom:1px solid rgba(15,15,15,.12);font-size:15px}
+.vC .row:last-child{border:0}
+.vC .pr{font-family:'Corm',serif;font-size:22px}
+.vC .mini{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;border:1px solid #0f0f0f;padding:9px 16px}
+.vC .mini:hover{background:#0f0f0f;color:#fff}
+.vC section{width:min(1320px,94vw);margin:0 auto;padding:clamp(50px,7vw,100px) 0}
+.vC .hd{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #0f0f0f;padding-bottom:14px;margin-bottom:0}
+.vC h2{font-size:clamp(26px,3vw,40px)}
+.vC .hd span{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#7a7a7a}
+.vC .line{display:grid;grid-template-columns:64px 1fr auto auto;gap:clamp(14px,3vw,40px);align-items:center;padding:22px 0;border-bottom:1px solid rgba(15,15,15,.14);transition:.2s}
+.vC .line:hover{background:#f2f1ed}
+.vC .line .no{font-size:11px;letter-spacing:.16em;color:#8a8a8a}
+.vC .line h3{font-family:'Corm',serif;font-weight:300;font-size:clamp(24px,2.6vw,34px)}
+.vC .line p{font-size:13px;color:#5c5c5c;margin-top:3px}
+.vC .line .p{font-family:'Corm',serif;font-size:clamp(19px,1.8vw,24px);white-space:nowrap}
+.vC .line .bt{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;border:1px solid #0f0f0f;padding:10px 18px;white-space:nowrap}
+.vC .line .bt:hover{background:#0f0f0f;color:#fff}
+.vC .gal{display:grid;grid-template-columns:repeat(5,1fr);gap:2px}
+.vC .gal img{width:100%;height:clamp(120px,14vw,200px);object-fit:cover;filter:grayscale(.2)}
+.vC .two{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px);align-items:start}
+.vC .two img{width:100%;height:clamp(260px,34vw,460px);object-fit:cover}
+.vC .two p{font-size:15.5px;color:#3a3a3a;margin-top:16px}
+.vC .kv{border-top:1px solid #0f0f0f;margin-top:26px}
+.vC .kv div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid rgba(15,15,15,.12);font-size:13.5px}
+.vC .kv em{font-style:normal;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#7a7a7a}
+.vC footer{border-top:1px solid #0f0f0f;padding:26px 0;font-size:12px;color:#6d6d6d}
+.vC footer .in2{width:min(1320px,94vw);margin:0 auto;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:900px){
+ .vC .lead,.vC .two{grid-template-columns:1fr}
+ .vC .strip,.vC .gal{grid-template-columns:1fr 1fr}
+ .vC .search{grid-template-columns:1fr 1fr}
+ .vC .go{grid-column:1/-1;min-height:54px}
+ .vC .line{grid-template-columns:44px 1fr;row-gap:10px}
+ .vC .line .p,.vC .line .bt{justify-self:start}
+ .vC .in a.lk{display:none}
+}
+/* ---------- A · светлая версия тела страницы (правка после замечания «слишком темно») ---------- */
+.vA{background:#f7f2e9;color:#1c1813}
+.vA .hero .sh{filter:saturate(1) brightness(1.02)}
+.vA .hero .bd{filter:blur(26px) brightness(.72) saturate(.9);opacity:.9}
+.vA .hero:after{background:linear-gradient(180deg,rgba(14,13,11,.55) 0%,rgba(14,13,11,.05) 42%,rgba(20,17,13,.86) 100%)}
+.vA .band{background:#efe7d8;border-bottom:1px solid rgba(28,24,19,.12);color:#5f5749}
+.vA .band div{border-right:1px solid rgba(28,24,19,.12)}
+.vA .band b{color:#1c1813}
+.vA .hd span{color:#8a8071}
+.vA .cards{background:rgba(28,24,19,.12)}
+.vA .card{background:#fff}
+.vA .card img{filter:none}
+.vA .card .p{color:#6d6355}
+.vA .card .n{color:#8c6d20}
+.vA .gal img{filter:none}
+.vA .cnt p{color:#5f5749}
+.vA .cl{border-bottom:1px solid rgba(28,24,19,.12);color:#1c1813}
+.vA .cl em{color:#8a8071}
+.vA .cl a:hover{color:#8c6d20}
+.vA .mini{border-color:rgba(28,24,19,.28);color:#1c1813}
+.vA .mini:hover{border-color:#8c6d20;color:#8c6d20}
+.vA .darkblk{background:#161310;color:#efe7d7;width:100%;padding:clamp(52px,7vw,96px) 0;margin-top:0}
+.vA .darkblk .in3{width:min(1240px,92vw);margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,5vw,70px);align-items:center}
+.vA .darkblk img{width:100%;height:clamp(280px,34vw,440px);object-fit:cover}
+.vA .darkblk p{color:rgba(239,231,215,.75);margin-top:16px}
+.vA .darkblk .lst li{color:rgba(239,231,215,.75)}
+.vA .hero .txt{color:#f5efe2}
+.vA .hero h1{color:#f7f3e9}
+.vA .hero .kick{color:#d9b871}
+.vA .hero .sub{color:rgba(245,239,226,.82)}
+.vA .hero .row b{color:#f5efe2}
+.vA .hero .row small{color:rgba(245,239,226,.6)}
+.vA .hd span{color:#5f5749 !important}
+.vA .cnt p{color:#5f5749 !important}
+.vA footer{background:#161310;border:0;color:rgba(239,231,215,.45);width:100%}
+@media(max-width:980px){.vA .darkblk .in3{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+
+<div id="sw" role="tablist" aria-label="Вариант дизайна">
+  <b>Вариант</b>
+  <button class="on" data-v="A" role="tab" aria-selected="true">I</button>
+  <button data-v="B" role="tab" aria-selected="false">II</button>
+  <button data-v="C" role="tab" aria-selected="false">III</button>
+</div>
+
+<!-- ============================ A ============================ -->
+<div class="vv vA on" id="vA">
+  <div class="top"><div class="in">
+    <a href="#vA" class="lg">Old Town</a>
+    <nav><a href="#a-rooms" data-s="vA">Номера</a><a href="#a-life" data-s="vA">Отель</a><a href="#a-gal" data-s="vA">Галерея</a><a href="#a-cnt" data-s="vA">Контакты</a></nav>
+    <a class="cta" href="#a-book" data-s="vA">Забронировать</a>
+  </div></div>
+
+  <div class="hero">
+    <img class="bd" src="assets/img/blog_home_1.webp" alt="" aria-hidden="true" width="648" height="528">
+    <img class="sh" src="assets/img/about_1.webp" alt="Отель Old Town в Батуми" width="650" height="548" fetchpriority="high">
+    <div class="txt">
+      <div class="kick">Батуми · Старый город · с 2014</div>
+      <h1 class="serif">Тихий дом<br>в старом Батуми</h1>
+      <p class="sub">Четыре категории номеров, терраса с видом на город и море, свой кафе-бар. Две минуты пешком до набережной.</p>
+
+      <form class="search" id="a-book" onsubmit="return find(event,'a')">
+        <div class="fld"><label for="a-in">Заезд</label><input id="a-in" type="date" required></div>
+        <div class="fld"><label for="a-out">Выезд</label><input id="a-out" type="date" required></div>
+        <div class="fld"><label for="a-g">Гости</label>
+          <select id="a-g"><option>1 взрослый</option><option selected>2 взрослых</option><option>2 взрослых + 1 ребёнок</option><option>2 взрослых + 2 ребёнка</option></select>
+        </div>
+        <div class="fld"><label for="a-c">Категория</label>
+          <select id="a-c"><option>Любая</option><option>Стандарт</option><option>Полулюкс</option><option>Люкс</option><option>Дуплекс</option></select>
+        </div>
+        <button class="go" type="submit">Найти</button>
+      </form>
+      <div class="out" id="a-out2">
+        <div class="row"><div><b>Стандарт</b><small>две отдельные кровати · без питания · бесплатная отмена · осталось 3</small></div><div style="display:flex;align-items:center;gap:14px"><div class="pr">157 GEL</div><a class="mini" href="https://booking-hoteloldtown1.otelms.com/booking/rooms">Выбрать</a></div></div>
+        <div class="row"><div><b>Люкс</b><small>кровать King · без питания · бесплатная отмена · осталось 2</small></div><div style="display:flex;align-items:center;gap:14px"><div class="pr">350 GEL</div><a class="mini" href="https://booking-hoteloldtown1.otelms.com/booking/rooms">Выбрать</a></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="band">
+    <div><b>В центре</b>Вахтанга Горгасали 1</div>
+    <div><b>2 минуты</b>до набережной</div>
+    <div><b>Терраса</b>вид на город и море</div>
+    <div><b>Прямая бронь</b>без комиссии агрегаторов</div>
+  </div>
+
+  <section id="a-rooms">
+    <div class="hd"><h2 class="serif">Номера</h2><span>от 157 GEL за ночь</span></div>
+    <div class="cards">
+      <article class="card"><img src="assets/gallery/a1.webp" alt="Стандарт" loading="lazy"><div class="b"><h3>Стандарт</h3><p>Две отдельные кровати, 16 м²</p><div class="n">от 157 GEL</div></div></article>
+      <article class="card"><img src="assets/gallery/b1.webp" alt="Полулюкс" loading="lazy"><div class="b"><h3>Полулюкс</h3><p>Просторнее стандарта</p><div class="n">по запросу</div></div></article>
+      <article class="card"><img src="assets/gallery/c1.webp" alt="Люкс" loading="lazy"><div class="b"><h3>Люкс</h3><p>Кровать King 193×203</p><div class="n">от 350 GEL</div></div></article>
+      <article class="card"><img src="assets/gallery/d1.webp" alt="Дуплекс" loading="lazy"><div class="b"><h3>Дуплекс</h3><p>Два уровня в номере</p><div class="n">по запросу</div></div></article>
+    </div>
+  </section>
+
+  <div class="darkblk" id="a-life">
+    <div class="in3">
+      <div>
+        <h2 class="serif">Вечер на террасе</h2>
+        <p>Крыша отеля открыта для гостей: кофе утром, вино вечером, тишина вместо городского шума. Кафе-бар работает и для постояльцев, и для их гостей.</p>
+        <ul class="lst">
+          <li><span>01</span> Завтрак на террасе — по запросу</li>
+          <li><span>02</span> Кофе, вино, лёгкая кухня весь день</li>
+          <li><span>03</span> Туры по Аджарии: машина, водитель, маршрут</li>
+        </ul>
+      </div>
+      <img src="assets/img/blog_home_1.webp" alt="Терраса отеля" loading="lazy">
+    </div>
+  </div>
+
+  <section id="a-gal" style="padding-top:0">
+    <div class="hd"><h2 class="serif">Галерея</h2><span>28 фотографий</span></div>
+    <div class="gal">
+      <img src="assets/gallery/a2.webp" alt="" loading="lazy"><img src="assets/gallery/b2.webp" alt="" loading="lazy"><img src="assets/gallery/c2.webp" alt="" loading="lazy"><img src="assets/gallery/d2.webp" alt="" loading="lazy">
+      <img src="assets/gallery/a3.webp" alt="" loading="lazy"><img src="assets/gallery/b3.webp" alt="" loading="lazy"><img src="assets/gallery/c3.webp" alt="" loading="lazy"><img src="assets/gallery/d3.webp" alt="" loading="lazy">
+    </div>
+  </section>
+
+  <section id="a-cnt" style="padding-top:0">
+    <div class="cnt">
+      <div>
+        <h2 class="serif">Контакты</h2>
+        <div style="margin-top:22px">
+          <div class="cl"><em>Телефон</em><a href="tel:+995577458471">+995 577 45 84 71</a></div>
+          <div class="cl"><em>Городской</em><a href="tel:+995422224959">+995 422 22 49 59</a></div>
+          <div class="cl"><em>WhatsApp</em><a href="https://wa.me/995577458471">Написать</a></div>
+          <div class="cl"><em>Email</em><a href="mailto:old.town2014@mail.ru">old.town2014@mail.ru</a></div>
+          <div class="cl"><em>Адрес</em><span>Батуми, Вахтанга Горгасали 1</span></div>
+        </div>
+      </div>
+      <div>
+        <img src="assets/img/about_2.webp" alt="Отель" loading="lazy" style="width:100%;height:clamp(200px,24vw,300px);object-fit:cover">
+        <p style="margin-top:16px;font-size:13.5px;color:rgba(239,231,215,.6)">2 минуты пешком до набережной и площади Пьяцца, 10 минут на машине от вокзала.</p>
+        <a class="mini" style="display:inline-block;margin-top:14px" href="https://www.google.com/maps/search/?api=1&query=Hotel+Old+Town+Batumi">На карте</a>
+      </div>
+    </div>
+  </section>
+
+  <footer><div class="in2"><span>Old Town · Батуми, Вахтанга Горгасали 1</span><span>Демо-макет · вариант I</span></div></footer>
+</div>
+
+<!-- ============================ B ============================ -->
+<div class="vv vB" id="vB">
+  <div class="top"><div class="in">
+    <a href="#vB" class="lg">Old Town<i>Batumi · с 2014</i></a>
+    <nav><a href="#b-rooms" data-s="vB">Номера</a><a href="#b-life" data-s="vB">Терраса</a><a href="#b-cnt" data-s="vB">Контакты</a></nav>
+    <a class="cta" href="#b-book" data-s="vB">Забронировать</a>
+  </div></div>
+
+  <div class="wrap hero">
+    <div>
+      <div class="kick">Старый город · Батуми</div>
+      <h1 class="serif">Отель, в который возвращаются</h1>
+      <p class="lead">Небольшой дом в историческом центре: тихие номера, терраса над городом и кафе-бар, где утром варят кофе для своих.</p>
+      <form class="search" id="b-book" onsubmit="return find(event,'b')">
+        <div class="fld"><label for="b-in">Заезд</label><input id="b-in" type="date" required></div>
+        <div class="fld"><label for="b-out">Выезд</label><input id="b-out" type="date" required></div>
+        <div class="fld"><label for="b-g">Гости</label>
+          <select id="b-g"><option>1 взрослый</option><option selected>2 взрослых</option><option>2 + 1 ребёнок</option><option>2 + 2 ребёнка</option></select>
+        </div>
+        <button class="go" type="submit">Найти номер</button>
+      </form>
+      <div class="out" id="b-out2">
+        <div class="row"><span>Стандарт · две кровати · бесплатная отмена</span><span style="display:flex;align-items:center;gap:12px"><b class="pr">157 GEL</b><a class="mini" href="https://booking-hoteloldtown1.otelms.com/booking/rooms">Выбрать</a></span></div>
+        <div class="row"><span>Люкс · King · бесплатная отмена</span><span style="display:flex;align-items:center;gap:12px"><b class="pr">350 GEL</b><a class="mini" href="https://booking-hoteloldtown1.otelms.com/booking/rooms">Выбрать</a></span></div>
+      </div>
+    </div>
+    <div class="ph">
+      <img src="assets/img/blog_home_1.webp" alt="Терраса отеля Old Town" width="648" height="528" fetchpriority="high">
+      <div class="badge">Терраса · вид на Батуми</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="tri">
+      <div><b>01</b><p><strong>Центр</strong>Вахтанга Горгасали 1, две минуты до моря</p></div>
+      <div><b>02</b><p><strong>Терраса</strong>Кофе, вино и вид на старый город</p></div>
+      <div><b>03</b><p><strong>Прямая бронь</strong>Без комиссии посредникам</p></div>
+    </div>
+  </div>
+
+  <section id="b-rooms"><div class="wrap">
+    <div class="hd"><div><div class="kick">Номера</div><h2 class="serif">Четыре категории</h2><p>Цены за ночь. Бесплатная отмена при заселении.</p></div>
+      <a class="cta" href="https://booking-hoteloldtown1.otelms.com/booking/rooms">Все даты</a></div>
+    <div class="rooms">
+      <article class="room"><img src="assets/gallery/a2.webp" alt="Стандарт" loading="lazy"><div class="b"><div class="no">01 / 04</div><h3>Стандарт</h3><p>Две отдельные кровати 90×200, всё необходимое для короткой поездки.</p><div class="ft"><span>от 157 GEL</span><a href="https://booking-hoteloldtown1.otelms.com/booking/rooms">Забронировать</a></div></div></article>
+      <article class="room"><img src="assets/gallery/b2.webp" alt="Полулюкс" loading="lazy"><div class="b"><div class="no">02 / 04</div><h3>Полулюкс</h3><p>Просторнее стандарта — удобно для пары с ребёнком.</p><div class="ft"><span>по запросу</span><a href="https://wa.me/995577458471">Спросить</a></div></div></article>
+      <article class="room"><img src="assets/gallery/c2.webp" alt="Люкс" loading="lazy"><div class="b"><div class="no">03 / 04</div><h3>Люкс</h3><p>Кровать King 193×203, больше воздуха и света.</p><div class="ft"><span>от 350 GEL</span><a href="https://booking-hoteloldtown1.otelms.com/booking/rooms">Забронировать</a></div></div></article>
+      <article class="room"><img src="assets/gallery/d2.webp" alt="Дуплекс" loading="lazy"><div class="b"><div class="no">04 / 04</div><h3>Дуплекс</h3><p>Два уровня — для семьи или компании.</p><div class="ft"><span>по запросу</span><a href="https://wa.me/995577458471">Спросить</a></div></div></article>
+    </div>
+  </div></section>
+
+  <div class="dark" id="b-life"><div class="wrap">
+    <img src="assets/gallery/c1.webp" alt="Номер" loading="lazy">
+    <div>
+      <div class="kick">Терраса и кафе-бар</div>
+      <h2 class="serif" style="margin-top:12px">Вечер, который<br>остаётся в памяти</h2>
+      <p>Крыша отеля открыта для гостей. Кофе утром, вино вечером, тишина вместо городского шума.</p>
+      <ul>
+        <li>Завтрак на террасе — по запросу</li>
+        <li>Лёгкая кухня и вино весь день</li>
+        <li>Туры по Аджарии: машина, водитель, маршрут</li>
+      </ul>
+      <a class="cta" style="display:inline-block;margin-top:24px;background:#c2b48f;color:#2b2a24" href="https://wa.me/995577458471">Обсудить в WhatsApp</a>
+    </div>
+  </div></div>
+
+  <section id="b-cnt"><div class="wrap cnt">
+    <div>
+      <div class="kick">Контакты</div>
+      <h2 class="serif" style="margin-bottom:18px">Напишите нам</h2>
+      <div class="cl"><em>Телефон</em><a href="tel:+995577458471">+995 577 45 84 71</a></div>
+      <div class="cl"><em>Городской</em><a href="tel:+995422224959">+995 422 22 49 59</a></div>
+      <div class="cl"><em>WhatsApp</em><a href="https://wa.me/995577458471">Написать</a></div>
+      <div class="cl"><em>Email</em><a href="mailto:old.town2014@mail.ru">old.town2014@mail.ru</a></div>
+    </div>
+    <div class="box">
+      <h3 class="serif" style="font-size:24px">Как добраться</h3>
+      <p>Батуми, улица Вахтанга Горгасали 1. Две минуты пешком до набережной и площади Пьяцца, десять минут на машине от железнодорожного вокзала.</p>
+      <a class="dl" href="https://www.google.com/maps/search/?api=1&query=Hotel+Old+Town+Batumi">Открыть на карте →</a>
+    </div>
+  </div></section>
+
+  <footer><div class="wrap"><span>Old Town · Батуми</span><span>Демо-макет · вариант II</span></div></footer>
+  <div class="mbar"><a href="https://wa.me/995577458471">WhatsApp</a><a href="#b-book" data-s="vB">Забронировать</a></div>
+</div>
+
+<!-- ============================ C ============================ -->
+<div class="vv vC" id="vC">
+  <div class="top"><div class="in">
+    <a href="#vC" class="lg">Old Town</a>
+    <div class="sep"></div>
+    <a class="lk" href="#c-rooms" data-s="vC">Номера</a>
+    <a class="lk" href="#c-gal" data-s="vC">Галерея</a>
+    <a class="lk" href="#c-cnt" data-s="vC">Контакты</a>
+    <a class="lk" href="https://wa.me/995577458471">WhatsApp</a>
+  </div></div>
+
+  <div class="hero">
+    <div class="kick">Отель в старом Батуми · с 2014</div>
+    <h1 class="serif">Old Town</h1>
+    <div class="lead">
+      <p>Дом в историческом центре Батуми. Четыре категории номеров, терраса над городом, кафе-бар и туры по Аджарии.</p>
+      <p>Две минуты пешком до набережной. Прямое бронирование — без комиссии посредникам, по телефону или в WhatsApp.</p>
+    </div>
+
+    <div class="strip">
+      <img src="assets/img/about_1.webp" alt="Отель" width="650" height="548" fetchpriority="high">
+      <img src="assets/gallery/a1.webp" alt="Номер" loading="lazy">
+      <img src="assets/img/blog_home_1.webp" alt="Терраса" loading="lazy">
+    </div>
+
+    <form class="search" id="c-book" onsubmit="return find(event,'c')">
+      <div class="fld"><label for="c-in">Заезд</label><input id="c-in" type="date" required></div>
+      <div class="fld"><label for="c-out">Выезд</label><input id="c-out" type="date" required></div>
+      <div class="fld"><label for="c-g">Гости</label>
+        <select id="c-g"><option>1 взрослый</option><option selected>2 взрослых</option><option>2 + 1 ребёнок</option><option>2 + 2 ребёнка</option></select>
+      </div>
+      <div class="fld"><label for="c-c">Категория</label>
+        <select id="c-c"><option>Любая</option><option>Стандарт</option><option>Полулюкс</option><option>Люкс</option><option>Дуплекс</option></select>
+      </div>
+      <button class="go" type="submit">Найти</button>
+    </form>
+    <div class="out" id="c-out2">
+      <div class="row"><span>Стандарт · две отдельные кровати · осталось 3</span><span style="display:flex;align-items:center;gap:14px"><b class="pr">157 GEL</b><a class="mini" href="https://booking-hoteloldtown1.otelms.com/booking/rooms">Выбрать</a></span></div>
+      <div class="row"><span>Люкс · кровать King · осталось 2</span><span style="display:flex;align-items:center;gap:14px"><b class="pr">350 GEL</b><a class="mini" href="https://booking-hoteloldtown1.otelms.com/booking/rooms">Выбрать</a></span></div>
+    </div>
+  </div>
+
+  <section id="c-rooms">
+    <div class="hd"><h2 class="serif">Номера</h2><span>Цены за ночь · бесплатная отмена</span></div>
+    <div class="line"><div class="no">01</div><div><h3>Стандарт</h3><p>Две отдельные кровати 90×200 · без питания</p></div><div class="p">157 GEL</div><a class="bt" href="https://booking-hoteloldtown1.otelms.com/booking/rooms">Бронь</a></div>
+    <div class="line"><div class="no">02</div><div><h3>Полулюкс</h3><p>Просторнее стандарта · для пары с ребёнком</p></div><div class="p">по запросу</div><a class="bt" href="https://wa.me/995577458471">Спросить</a></div>
+    <div class="line"><div class="no">03</div><div><h3>Люкс</h3><p>Кровать King 193×203 · без питания</p></div><div class="p">350 GEL</div><a class="bt" href="https://booking-hoteloldtown1.otelms.com/booking/rooms">Бронь</a></div>
+    <div class="line"><div class="no">04</div><div><h3>Дуплекс</h3><p>Два уровня · для семьи или компании</p></div><div class="p">по запросу</div><a class="bt" href="https://wa.me/995577458471">Спросить</a></div>
+  </section>
+
+  <section id="c-gal" style="padding-top:0">
+    <div class="hd"><h2 class="serif">Галерея</h2><span>28 фотографий</span></div>
+    <div class="gal" style="margin-top:18px">
+      <img src="assets/gallery/a2.webp" alt="" loading="lazy"><img src="assets/gallery/b2.webp" alt="" loading="lazy"><img src="assets/gallery/c2.webp" alt="" loading="lazy"><img src="assets/gallery/d2.webp" alt="" loading="lazy"><img src="assets/gallery/a3.webp" alt="" loading="lazy">
+      <img src="assets/gallery/b3.webp" alt="" loading="lazy"><img src="assets/gallery/c3.webp" alt="" loading="lazy"><img src="assets/gallery/d3.webp" alt="" loading="lazy"><img src="assets/gallery/b4.webp" alt="" loading="lazy"><img src="assets/gallery/c4.webp" alt="" loading="lazy">
+    </div>
+  </section>
+
+  <section id="c-cnt" style="padding-top:0">
+    <div class="two">
+      <div>
+        <h2 class="serif">Контакты</h2>
+        <div class="kv">
+          <div><em>Телефон</em><a href="tel:+995577458471">+995 577 45 84 71</a></div>
+          <div><em>Городской</em><a href="tel:+995422224959">+995 422 22 49 59</a></div>
+          <div><em>WhatsApp</em><a href="https://wa.me/995577458471">Написать</a></div>
+          <div><em>Email</em><a href="mailto:old.town2014@mail.ru">old.town2014@mail.ru</a></div>
+          <div><em>Адрес</em><span>Батуми, Вахтанга Горгасали 1</span></div>
+        </div>
+      </div>
+      <div>
+        <img src="assets/gallery/b1.webp" alt="Отель" loading="lazy">
+        <p>Две минуты пешком до набережной и площади Пьяцца. Десять минут на машине от железнодорожного вокзала.</p>
+        <a class="bt" style="display:inline-block;margin-top:14px" href="https://www.google.com/maps/search/?api=1&query=Hotel+Old+Town+Batumi">На карте</a>
+      </div>
+    </div>
+  </section>
+
+  <footer><div class="in2"><span>Old Town · Батуми, Вахтанга Горгасали 1</span><span>Демо-макет · вариант III</span></div></footer>
+</div>
+
+<script>
+(function(){
+  var today=new Date(), pad=function(n){return String(n).padStart(2,'0')},
+      iso=function(d){return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())};
+  var plus=new Date(today); plus.setDate(plus.getDate()+2);
+  ['a','b','c'].forEach(function(k){
+    var i=document.getElementById(k+'-in'), o=document.getElementById(k+'-out');
+    if(!i) return;
+    i.value=iso(today); o.value=iso(plus); i.min=iso(today); o.min=iso(today);
+    i.addEventListener('change',function(){ o.min=i.value; if(o.value<i.value){ var d=new Date(i.value); d.setDate(d.getDate()+1); o.value=iso(d);} });
+  });
+
+  var sw=document.getElementById('sw');
+  function show(v){
+    ['A','B','C'].forEach(function(x){
+      document.getElementById('v'+x).classList.toggle('on', x===v);
+    });
+    sw.querySelectorAll('button').forEach(function(b){
+      var on=b.dataset.v===v; b.classList.toggle('on',on); b.setAttribute('aria-selected',on?'true':'false');
+    });
+    localStorage.setItem('variant',v);
+    window.scrollTo({top:0,behavior:'instant'});
+  }
+  sw.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-v]'); if(b) show(b.dataset.v);
+  });
+  document.querySelectorAll('a[data-s]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var id=a.getAttribute('href');
+      if(id&&id.charAt(0)==='#'){
+        var t=document.querySelector(id);
+        if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+      }
+    });
+  });
+  var saved=localStorage.getItem('variant')||'A'; show(saved);
+})();
+
+function find(e,k){
+  e.preventDefault();
+  var box=document.getElementById(k+'-out2');
+  box.classList.add('on');
+  return false;
+}
+</script>
+</body>
+</html>
